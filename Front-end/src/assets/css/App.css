@@ -1,0 +1,459 @@
+:root {
+  --border-color: hsla(0, 0%, 18%, 1);
+  --error-bg: hsla(357, 46%, 16%, 1);
+  --error-text: hsla(358, 100%, 69%, 1);
+}
+
+/* fonts */
+@font-face {
+  font-family: "Satoshi-Light";
+  src: url("../fonts/Satoshi-Light.woff2") format("woff2"),
+    url("../fonts/Satoshi-Light.woff") format("woff"),
+    url("../fonts/Satoshi-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Satoshi-LightItalic";
+  src: url("../fonts/Satoshi-LightItalic.woff2") format("woff2"),
+    url("../fonts/Satoshi-LightItalic.woff") format("woff"),
+    url("../fonts/Satoshi-LightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-display: swap;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("../fonts/Satoshi-Regular.woff2") format("woff2"),
+    url("../fonts/Satoshi-Regular.woff") format("woff"),
+    url("../fonts/Satoshi-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Satoshi-Italic";
+  src: url("../fonts/Satoshi-Italic.woff2") format("woff2"),
+    url("../fonts/Satoshi-Italic.woff") format("woff"),
+    url("../fonts/Satoshi-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Satoshi-Medium";
+  src: url("../fonts/Satoshi-Medium.woff2") format("woff2"),
+    url("../fonts/Satoshi-Medium.woff") format("woff"),
+    url("../fonts/Satoshi-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Satoshi-MediumItalic";
+  src: url("../fonts/Satoshi-MediumItalic.woff2") format("woff2"),
+    url("../fonts/Satoshi-MediumItalic.woff") format("woff"),
+    url("../fonts/Satoshi-MediumItalic.ttf") format("truetype");
+  font-weight: 500;
+  font-display: swap;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Satoshi-Bold";
+  src: url("../fonts/Satoshi-Bold.woff2") format("woff2"),
+    url("../fonts/Satoshi-Bold.woff") format("woff"),
+    url("../fonts/Satoshi-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Satoshi-BoldItalic";
+  src: url("../fonts/Satoshi-BoldItalic.woff2") format("woff2"),
+    url("../fonts/Satoshi-BoldItalic.woff") format("woff"),
+    url("../fonts/Satoshi-BoldItalic.ttf") format("truetype");
+  font-weight: 700;
+  font-display: swap;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Satoshi-Black";
+  src: url("../fonts/Satoshi-Black.woff2") format("woff2"),
+    url("../fonts/Satoshi-Black.woff") format("woff"),
+    url("../fonts/Satoshi-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Satoshi-BlackItalic";
+  src: url("../fonts/Satoshi-BlackItalic.woff2") format("woff2"),
+    url("../fonts/Satoshi-BlackItalic.woff") format("woff"),
+    url("../fonts/Satoshi-BlackItalic.ttf") format("truetype");
+  font-weight: 900;
+  font-display: swap;
+  font-style: italic;
+}
+/**
+  * This is a variable font
+  * You can control variable axes as shown below:
+  * font-variation-settings: wght 900.0;
+  *
+  * available axes:
+  'wght' (range from 300.0 to 900.0
+  */
+@font-face {
+  font-family: "Satoshi-Variable";
+  src: url("../fonts/Satoshi-Variable.woff2") format("woff2"),
+    url("../fonts/Satoshi-Variable.woff") format("woff"),
+    url("../fonts/Satoshi-Variable.ttf") format("truetype");
+  font-weight: 300 900;
+  font-display: swap;
+  font-style: normal;
+}
+/**
+  * This is a variable font
+  * You can control variable axes as shown below:
+  * font-variation-settings: wght 900.0;
+  *
+  * available axes:
+  'wght' (range from 300.0 to 900.0
+  */
+@font-face {
+  font-family: "Satoshi-VariableItalic";
+  src: url("../fonts/Satoshi-VariableItalic.woff2") format("woff2"),
+    url("../fonts/Satoshi-VariableItalic.woff") format("woff"),
+    url("../fonts/Satoshi-VariableItalic.ttf") format("truetype");
+  font-weight: 300 900;
+  font-display: swap;
+  font-style: italic;
+}
+/* fonts */
+html {
+  font-size: 62.5%;
+}
+
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Satoshi", sans-serif;
+  font-size: inherit;
+  background-color: black;
+  transition: all 0.3s;
+}
+.App {
+  height: calc(100vh - 67.75px);
+}
+
+.main-navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  background-color: black;
+}
+.logo {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+.nav-link {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  cursor: pointer;
+}
+.nav-link h1 {
+  font-size: 2rem;
+  color: white;
+  text-transform: capitalize;
+}
+.button {
+  padding: 1rem 1.5rem;
+  margin-left: 2rem;
+  border-radius: 2rem;
+  font-size: 1.6rem;
+  border: 1px solid var(--border-color);
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+}
+.button:hover {
+  background-color: rgb(23, 22, 22);
+}
+.home,
+.login,
+.signup {
+  margin-top: 67.75px;
+  position: relative;
+  height: 100%;
+}
+.background-main {
+  position: absolute;
+  width: 100%;
+  border: none;
+  height: 70%;
+}
+.home-section {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.main-text {
+  color: white;
+  font-size: 5rem;
+  font-weight: 800;
+  background: #222 -webkit-gradient(
+      linear,
+      left top,
+      right top,
+      from(#222),
+      to(#222),
+      color-stop(0.5, #fff)
+    ) 0 0 no-repeat;
+  background-size: 150px;
+  -webkit-background-size: 150px;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation-name: shine;
+  -webkit-animation-name: shine;
+  animation-duration: 5s;
+  -webkit-animation-duration: 5s;
+  animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+  text-shadow: 0 0px 0px rgba(255, 255, 255, 0.5);
+  margin-bottom: 1rem;
+}
+.sub-text {
+  color: white;
+  font-size: 2rem;
+  font-weight: 800;
+}
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.login-section {
+  width: 400px;
+  padding: 2rem;
+}
+.login-heading {
+  font-family: "Satoshi-Black" sans-serif;
+  color: #fff;
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-weight: 900;
+}
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 2.4rem;
+}
+.login-input {
+  padding: 1.5rem;
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 7px;
+  color: white;
+  width: 100%;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.white-button {
+  padding: 1rem 1.5rem;
+  margin-left: 2rem;
+  border-radius: 2rem;
+  font-size: 1.6rem;
+  border: 1px solid var(--border-color);
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  margin-left: 0;
+}
+.forget-password {
+  color: white;
+  font-size: 1.4rem;
+}
+.white-button:hover {
+  background-color: rgb(199, 197, 197);
+}
+.login-container {
+  position: relative;
+  transition: all 0.3s;
+}
+.input-label {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: -1;
+  color: var(--error-text);
+  display: none;
+}
+#email:focus:invalid ~ .input-label,
+#password:focus:invalid ~ .input-label {
+  bottom: -2rem;
+  display: initial;
+}
+
+.password-box {
+  position: relative;
+}
+.eye-button {
+  position: absolute;
+  right: 1.5rem;
+  top: 1.5rem;
+  cursor: pointer;
+}
+#password:placeholder-shown ~ .eye-button {
+  display: none;
+}
+.error-container {
+  width: 100%;
+  background-color: var(--error-bg);
+  padding: 1.5rem;
+  color: var(--error-text);
+  border-radius: 4px;
+  font-size: 1.4rem;
+}
+.background-videos {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 99%;
+  object-fit: fill;
+  z-index: -1;
+}
+.search-input-container {
+  width: 460px;
+}
+.search-form {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  margin-bottom: 10rem;
+  height: 5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 1.5rem;
+}
+.search-area {
+  resize: none;
+  width: 100%;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  background-color: transparent;
+  color: white;
+  font-family: "Satoshi";
+  height: 100%;
+  border-right: 1px solid var(--border-color);
+  border-top-left-radius: 1.5rem;
+  border-bottom-left-radius: 1.5rem;
+  outline: none;
+  position: relative;
+}
+.search-form.focus .search-area::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: 8px;
+  background: linear-gradient(45deg, red, blue, lime, purple, orange);
+  z-index: -1;
+  filter: blur(8px);
+  opacity: 1;
+  animation: glowShift 4s linear infinite;
+}
+
+.search-button {
+  height: 100%;
+  padding-inline: 1rem;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  border-top-right-radius: 1.5rem;
+  border-bottom-right-radius: 1.5rem;
+}
+.search-button:hover {
+  background-color: rgb(23, 22, 22);
+}
+.focus {
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5),
+    0 0 10px rgba(255, 255, 255, 0.4), 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+/* utilities */
+.text-center {
+  text-align: center;
+}
+
+/* Animation */
+@-webkit-keyframes shine {
+  0%,
+  10% {
+    background-position: -1000px;
+  }
+  20% {
+    background-position: top left;
+  }
+  90% {
+    background-position: top right;
+  }
+  100% {
+    background-position: 1000px;
+  }
+}
+
+@keyframes shine {
+  0%,
+  10% {
+    background-position: -1000px;
+  }
+  20% {
+    background-position: top left;
+  }
+  90% {
+    background-position: top right;
+  }
+  100% {
+    background-position: 1000px;
+  }
+}
+
+@keyframes glowShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
