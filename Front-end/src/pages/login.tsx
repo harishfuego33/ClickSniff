@@ -7,7 +7,7 @@ const Login = () => {
   const [eyeVisible, setEyeVisible] = useState<boolean>(false);
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [error, setError] = useState<string>("");
+  const [error, setError] = useState<string | null>(null);
   const onFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
@@ -21,15 +21,19 @@ const Login = () => {
       console.log(response);
     } catch (err) {
       console.log(err);
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("An unknown error occurred.");
+      }
     }
-    x``;
   };
   return (
     <main id="login" className="login">
       <section className="login-section">
         <h1 className="login-heading">LOGIN</h1>
         <form className="login-form" onSubmit={onFormSubmit}>
-          {error.length != 0 && (
+          {error && error.length != 0 && (
             <div className="error-container">
               <p className="error-text">Error while login</p>
             </div>
