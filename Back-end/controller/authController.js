@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const user = require("../model/userModel");
 
 const login = async (req, res) => {
+  console.log(req.body);
   try {
     const { email, password } = req.body;
     const userData = await user.findOne({ email: email });
@@ -14,6 +15,7 @@ const login = async (req, res) => {
     const passwordMatch = await bcrypt.compare(password, userData.password);
     if (!passwordMatch)
       return res.status(400).json({
+        success: false,
         status: "failed",
         message: "Email or password in incorrect",
       });
@@ -26,6 +28,7 @@ const login = async (req, res) => {
     };
     res.status(200).json({
       status: "Success",
+      success: true,
       data: {
         user: data,
         token: jwtToken,

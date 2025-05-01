@@ -4,8 +4,26 @@ interface AuthAction {
   type: string;
   payload?: { token: string; user: { id: string; name: string } };
 }
+// interface ILoginData {
+//   success: boolean;
+//   data: {
+//     token: string;
+//     user: {
+//       id: number;
+//       name: string;
+//       email: string;
+//     };
+//   };
+// }
 
-export const login = (state = {}, action: AuthAction) => {
+const initialState = {
+  isLoading: false,
+  isSuccess: false,
+  isFailure: false,
+  authData: {},
+};
+
+export const loginReducer = (state = initialState, action: AuthAction) => {
   switch (action.type) {
     case authConstant.userLoginRequest:
       return {

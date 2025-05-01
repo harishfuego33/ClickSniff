@@ -1,7 +1,7 @@
 import { authConstant } from "./constant/authConstant";
 
 interface LoginInput {
-  username: string;
+  email: string;
   password: string;
 }
 

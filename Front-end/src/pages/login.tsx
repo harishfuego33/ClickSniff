@@ -1,33 +1,41 @@
-import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { authAction } from "../actions/authAction";
+import { NavLink, useNavigate } from "react-router-dom";
+import { RootState } from "../reducer";
+import { commonConstant } from "../actions/constant/commonConstant";
 
 const Login = () => {
   const [eyeVisible, setEyeVisible] = useState<boolean>(false);
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string>("");
+  const navigate = useNavigate();
+
+  const loginResponse = useSelector((state: RootState) => state.loginReducer);
+  const dispatch = useDispatch();
   const onFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    try {
-      const response = await axios.post(
-        "http://localhost:8000/api/v1/user/login",
-        {
-          email,
-          password,
-        }
-      );
-      console.log(response);
-    } catch (err) {
-      console.log(err);
-      if (err instanceof Error) {
-        setError(err.message);
-      } else {
-        setError("An unknown error occurred.");
-      }
-    }
+    const userData = {
+      email: email,
+      password: password,
+    };
+    dispatch(authAction.login(userData));
   };
+
+  useEffect(() => {
+    if (loginResponse.isSuccess) {
+      sessionStorage.setItem(
+        commonConstant.authData,
+        JSON.stringify(loginResponse.authData)
+      );
+      navigate("/search");
+    }
+    if (loginResponse.isFailure) {
+      console.log(loginResponse);
+    }
+  }, [loginResponse, navigate]);
   return (
     <main id="login" className="login">
       <section className="login-section">

@@ -8,6 +8,9 @@ import Signup from "./pages/signup";
 import Navbar from "./components/navbar";
 import { useEffect, useState } from "react";
 import Search from "./pages/search";
+//Routes
+import PublicRoute from "./routes/PublicRoute";
+import PrivateRoute from "./routes/PrivateRoute";
 
 function App() {
   const [height, setHeight] = useState(window.innerHeight);
@@ -21,9 +24,30 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/search" element={<Search />} />
+          <Route
+            path="/login"
+            element={
+              <PublicRoute>
+                <Login />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/signup"
+            element={
+              <PublicRoute>
+                <Signup />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/search"
+            element={
+              <PrivateRoute>
+                <Search />
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </Router>
     </div>
