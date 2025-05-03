@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
-const cors = require("cors");
 const morgan = require("morgan");
+const corsMiddleware = require("./middleware/corsMiddleware");
 const app = express();
 const userRouter = require("./routes/userRouter");
 const authRouter = require("./routes/authRouter");
@@ -10,12 +10,7 @@ if (process.env.NODE_ENV == "development") {
   app.use(morgan("dev"));
 }
 app.use(express.json());
-app.use(
-  cors({
-    origin: "https://suspicious-url-detector.vercel.app/",
-    credentials: true,
-  })
-);
+app.use(corsMiddleware);
 app.use(express.static(`${__dirname}/public`));
 
 app.use((req, res, next) => {
