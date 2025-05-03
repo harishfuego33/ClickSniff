@@ -9,14 +9,13 @@ const login = async (req, res) => {
     const userData = await user.findOne({ email: email });
     if (!userData)
       return res.status(400).json({
-        status: "failed",
+        success: false,
         message: "Email or password in incorrect",
       });
     const passwordMatch = await bcrypt.compare(password, userData.password);
     if (!passwordMatch)
       return res.status(400).json({
         success: false,
-        status: "failed",
         message: "Email or password in incorrect",
       });
     const jwtToken = jwt.sign({ userId: userData._id }, process.env.PASSWORD, {
@@ -27,8 +26,8 @@ const login = async (req, res) => {
       email: userData.email,
     };
     res.status(200).json({
-      status: "Success",
       success: true,
+      message: "Login successful",
       data: {
         user: data,
         token: jwtToken,
@@ -36,7 +35,7 @@ const login = async (req, res) => {
     });
   } catch (error) {
     res.status(400).json({
-      status: "failed",
+      success: false,
       message: error.message,
     });
   }
