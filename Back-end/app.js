@@ -5,6 +5,7 @@ const corsMiddleware = require("./middleware/corsMiddleware");
 const app = express();
 const userRouter = require("./routes/userRouter");
 const authRouter = require("./routes/authRouter");
+const viewCount = require("./routes/viewsCount");
 
 if (process.env.NODE_ENV == "development") {
   app.use(morgan("dev"));
@@ -24,5 +25,6 @@ app.get("/", (req, res) => {
 
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/view", viewCount);
 
 module.exports = app;
