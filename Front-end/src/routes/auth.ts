@@ -1,4 +1,4 @@
-import { commonConstant } from "../actions/constant/commonConstant";
+import { commonConstant } from "../constant/commonConstant";
 
 export const isAuthenticated = () => {
   return !!sessionStorage.getItem(commonConstant.authData); // or check auth state

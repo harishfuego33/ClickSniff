@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { authAction } from "../actions/authAction";
 import { NavLink, useNavigate } from "react-router-dom";
-import { RootState } from "../reducer";
-import { commonConstant } from "../actions/constant/commonConstant";
+import { RootState } from "../slice/index";
+import { commonConstant } from "../constant/commonConstant";
+import { loginRequest } from "../slice/authSlicer";
 
 const Login = () => {
   const [eyeVisible, setEyeVisible] = useState<boolean>(false);
@@ -12,8 +12,7 @@ const Login = () => {
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<string>("");
   const navigate = useNavigate();
-
-  const loginResponse = useSelector((state: RootState) => state.loginReducer);
+  const loginResponse = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
   const onFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -21,19 +20,20 @@ const Login = () => {
       email: email,
       password: password,
     };
-    dispatch(authAction.login(userData));
+    dispatch(loginRequest(userData));
   };
 
   useEffect(() => {
-    if (loginResponse.isSuccess) {
+    console.log(loginResponse);
+    if (loginResponse && loginResponse.isSuccess) {
       sessionStorage.setItem(
         commonConstant.authData,
         JSON.stringify(loginResponse.authData)
       );
       navigate("/search");
     }
-    if (loginResponse.isFailure) {
-      console.log(loginResponse);
+    if (loginResponse && loginResponse.isFailure) {
+      setError("error while login");
     }
   }, [loginResponse, navigate]);
   return (
