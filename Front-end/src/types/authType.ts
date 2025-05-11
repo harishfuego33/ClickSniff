@@ -1,5 +1,3 @@
-import { authConstant } from "../constant/authConstant";
-
 export interface ILoginData {
   data: {
     token: string;
@@ -30,23 +28,3 @@ export interface AuthState {
   isFailure: boolean;
   authData?: ILoginDataSuccess | ILoginDataFailure;
 }
-
-export interface LoginRequestAction {
-  type: typeof authConstant.userLoginRequest;
-  payload: { email: string; password: string };
-}
-
-export interface LoginSuccessAction {
-  type: typeof authConstant.userLoginSuccess;
-  payload: ILoginDataSuccess;
-}
-
-export interface LoginFailureAction {
-  type: typeof authConstant.userLoginFailure;
-  payload: ILoginDataFailure;
-}
-
-export type AuthAction =
-  | LoginRequestAction
-  | LoginSuccessAction
-  | LoginFailureAction;

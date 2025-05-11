@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { isAuthenticated } from "../routes/auth";
 import { commonConstant } from "../constant/commonConstant";
-import { useEffect } from "react";
 
 const Navbar = () => {
   const Navigate = useNavigate();
