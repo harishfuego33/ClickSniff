@@ -21,7 +21,7 @@
 
 ## 📦 Installation
 # Clone the repository
-git clone https://github.com/your-username/ClickSniff.git
+git clone https://github.com/harishfuego33/ClickSniff.git
 cd ClickSniff
 
 # Install dependencies
@@ -30,3 +30,10 @@ npm install
 # Start the development server
 npm run dev
 
+#run
+localhost:5173
+
+ClickSniff/
+├── Front-end/        # Frontend code
+├── Back-end/        # Backend code
+├── README.md
